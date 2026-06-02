@@ -72,6 +72,25 @@ struct ContentView: View {
                         Text(IssueReportL10n.openReport)
                     }
                 }
+
+                if AppConstants.legalPrivacyURL != nil
+                    || AppConstants.legalTermsURL != nil
+                    || AppConstants.legalSupportURL != nil
+                {
+                    Section {
+                        if let url = AppConstants.legalPrivacyURL {
+                            Link(String(localized: "settings.legal.privacy"), destination: url)
+                        }
+                        if let url = AppConstants.legalTermsURL {
+                            Link(String(localized: "settings.legal.terms"), destination: url)
+                        }
+                        if let url = AppConstants.legalSupportURL {
+                            Link(String(localized: "settings.legal.support"), destination: url)
+                        }
+                    } header: {
+                        Text(String(localized: "settings.legal.section"))
+                    }
+                }
             }
             .navigationTitle(Text("app.title", bundle: .main))
             .onAppear {
